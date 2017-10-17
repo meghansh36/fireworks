@@ -133,9 +133,26 @@ function Fireworks(endx,endy,radius){
 var cannonballs = [];
 
         var isMouseDown = false;
+        var isTouchDown = false;
         window.addEventListener('mousemove',function(event){
             mouse.x = event.x;
             mouse.y = event.y;
+        })
+
+        window.addEventListener('touchstart',function(event){
+            mouse.x = parseInt(event.changedTouches[0].clientX);
+            mouse.y = parseInt(event.changedTouches[0].clientY);
+            isTouchDown = true;
+        })
+
+        window.addEventListener('touchend',function(){
+            isTouchDown = false;
+        })
+
+        window.addEventListener('touchmove',function(event){
+            mouse.x = parseInt(event.changedTouches[0].clientX);
+            mouse.y = parseInt(event.changedTouches[0].clientY);
+            isTouchDown = true;
         })
 		window.addEventListener("mousedown", function() {
 			isMouseDown = true;	
@@ -153,14 +170,18 @@ var cannonballs = [];
             MAX_TOP = Math.floor((40/100)*canvas.height);
             middlepositionX = canvas.width/2;
             middlepositionY = canvas.height;
-        })
+        });
+        
+        
+
+        
 
 var timer = 1;
 
 function animate()
 {
     requestAnimationFrame(animate);
-    if(isMouseDown===true)
+    if(isMouseDown===true || isTouchDown===true)
         {   timer++;
             if(timer%2==0){
             cannonballs.push(new Fireworks(mouse.x,mouse.y,5));}
