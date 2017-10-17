@@ -3,12 +3,12 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
 
-var MAX_LEFT = Math.floor((20/100) * innerWidth);
-var MAX_RIGHT = innerWidth - MAX_LEFT;
-var MAX_TOP = Math.floor((40/100)*innerHeight);
+var MAX_LEFT = Math.floor((20/100) * canvas.width);
+var MAX_RIGHT = canvas.width - MAX_LEFT;
+var MAX_TOP = Math.floor((40/100)*canvas.height);
 var c = canvas.getContext('2d');
-var middlepositionX = innerWidth/2;
-var middlepositionY = innerHeight;
+var middlepositionX = canvas.width/2;
+var middlepositionY = canvas.height;
 var ParticleArray = [];
 var ParticleArraySize = [9,10,11,12];
 var colorarray = ["#ffffff","#42cef4","#f46444"];
@@ -57,10 +57,10 @@ function Particles(startx,starty,endx,endy,radius,speed,color){
              this.x +=xunits;
              this.y +=yunits;
              this.timer-=0.01;
-             if(this.x+this.radius > window.innerWidth || this.x-this.radius<0){
+             if(this.x+this.radius > canvas.width || this.x-this.radius<0){
             xunits = -xunits;
             }
-            if(this.y+this.radius > window.innerHeight || this.y-this.radius<0){
+            if(this.y+this.radius > canvas.height || this.y-this.radius<0){
                 yunits = -yunits;
             }
              if(this.timer<0)
@@ -148,11 +148,11 @@ var cannonballs = [];
         window.addEventListener("resize",function(){
             canvas.height = window.innerHeight;
             canvas.width = window.innerWidth;
-            MAX_LEFT = Math.floor((20/100) * innerWidth);
-            MAX_RIGHT = innerWidth - MAX_LEFT;
-            MAX_TOP = Math.floor((40/100)*innerHeight);
-            middlepositionX = innerWidth/2;
-            middlepositionY = innerHeight;
+            MAX_LEFT = Math.floor((20/100) * canvas.width);
+            MAX_RIGHT = canvas.width - MAX_LEFT;
+            MAX_TOP = Math.floor((40/100)*canvas.height);
+            middlepositionX = canvas.width/2;
+            middlepositionY = canvas.height;
         })
 
 var timer = 1;
